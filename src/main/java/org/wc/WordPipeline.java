@@ -3,13 +3,18 @@ package org.wc;
 import java.io.File;
 
 public class WordPipeline {
+    public static final String FILE_PATH = System.getenv("FILE_PATH");
+    public static final String KAFKA_TOPIC = System.getenv("KAFKA_TOPIC");
+    public static final String KAFKA_SERVER = System.getenv("KAFKA_SERVER");
     public static void main(String[] args) {
-        File file = new File(System.getenv("FILE_PATH"));
-        String topic = System.getenv("KAFKA_TOPIC");
-        String bootstrap = System.getenv("KAFKA_SERVER");
-        PipeThread pipeThread = new PipeThread(file, topic, bootstrap);
-        Thread thread = new Thread(pipeThread);
-        thread.setDaemon(true);
+        System.out.println("* * * * *" +
+                "\nConfig Info" +
+                "\nFILE_PATH : " + FILE_PATH +
+                "\nKAFKA_TOPIC : " + KAFKA_TOPIC +
+                "\nKAFKA_SERVER : " + KAFKA_SERVER +
+                "\n* * * * *");
+
+        Thread thread = new Thread(new PipeThread(new File(FILE_PATH), KAFKA_TOPIC, KAFKA_SERVER));
         thread.start();
     }
 }
