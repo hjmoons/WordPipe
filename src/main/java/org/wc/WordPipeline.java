@@ -13,7 +13,7 @@ public class WordPipeline {
                 "\nKAFKA_TOPIC : " + KAFKA_TOPIC +
                 "\nKAFKA_SERVER : " + KAFKA_SERVER +
                 "\n* * * * *");
-
+        System.out.println("테스트 입니다.");
         Thread thread = new Thread(new PipeThread(new File(FILE_PATH), KAFKA_TOPIC, KAFKA_SERVER));
         thread.start();
     }
