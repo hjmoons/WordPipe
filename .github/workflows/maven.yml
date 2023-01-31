@@ -27,6 +27,15 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
+    - name: setup docker secrets
+      run: |
+          echo "DOCKER_USERNAME=$DOCKER_USERNAME" >> .env
+          echo "DOCKER_PASSWD=$DOCKER_PASSWD" >> .env
+      env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWD: ${{secrets.DOCKER_PASSWD}}
+    - name: docker login
+      run: docker login -u $DOCKER_USERNAME -p DOCKER_PASSWD
     - name: Build with Maven
       run: mvn -B package --file pom.xml docker:build -DpushImage
 
