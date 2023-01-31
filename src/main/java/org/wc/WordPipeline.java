@@ -3,7 +3,7 @@ package org.wc;
 import java.io.File;
 
 public class WordPipeline {
-    public static final String FILE_PATH = System.getenv("FILE_PATH");
+    public static final String FILE_PATH = "/app/data/word.txt";
     public static final String KAFKA_TOPIC = System.getenv("KAFKA_TOPIC");
     public static final String KAFKA_SERVER = System.getenv("KAFKA_SERVER");
     public static void main(String[] args) {
